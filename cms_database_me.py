@@ -30,13 +30,13 @@ class Customer:
         qry = "delete from cus where id=%s"
         mycur.execute(qry,self.id)
         mycon.commit()
-    def showall_cus(self):
-        mycur=mycon.cursor()
-        qry = "select * from cus"
-        mycur.execute(qry)
-        row = mycur.fetchall()
+#     def showall_cus(self):
+#         mycur=mycon.cursor()
+#         qry = "select * from cus"
+#         mycur.execute(qry)
+#         row = mycur.fetchall()
 
-        mycon.commit()
+#         mycon.commit()
 
 
 import tkinter
@@ -91,8 +91,26 @@ def btn_delete_click():
         obj.delete_cus(obj.id)
         tkinter.messagebox.showinfo("Sucess", "Customer Deleted Sucessfully")
 def btn_showall_click():
-    obj = Customer()
-    obj.showall_cus()
+#     obj = Customer()
+#     obj.showall_cus()
+      frmShowAll=tkinter.Toplevel()
+    myCursor = mycon.cursor()
+    strQuery = "select * from cus"
+    rowaffected=myCursor.execute(strQuery)
+    i=0
+    for row in myCursor.description:
+        lbl=tkinter.Label(frmShowAll,text=row[0])
+        lbl.grid(row=0,column=i)
+        i+=1
+    rowno=1
+    for row in myCursor.fetchall():
+        columnno=0
+        for cell in row:
+            lbl1=tkinter.Label(frmShowAll,text=cell)
+            lbl1.grid(row=rowno,column=columnno)
+            columnno+=1
+        rowno+=1
+
 def btn_exit_click():
     Msgbox = tkinter.messagebox.askquestion("Exit","Do you want to Exit?")
     if(Msgbox == 'yes'):
