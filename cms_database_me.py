@@ -1,4 +1,5 @@
 import pymysql
+#connecting with database
 mycon = pymysql.connect(host="localhost", user="root", password="root1234", database="cms_mani")
 
 class Customer:
@@ -30,13 +31,6 @@ class Customer:
         qry = "delete from cus where id=%s"
         mycur.execute(qry,self.id)
         mycon.commit()
-#     def showall_cus(self):
-#         mycur=mycon.cursor()
-#         qry = "select * from cus"
-#         mycur.execute(qry)
-#         row = mycur.fetchall()
-
-#         mycon.commit()
 
 
 import tkinter
@@ -91,9 +85,7 @@ def btn_delete_click():
         obj.delete_cus(obj.id)
         tkinter.messagebox.showinfo("Sucess", "Customer Deleted Sucessfully")
 def btn_showall_click():
-#     obj = Customer()
-#     obj.showall_cus()
-      frmShowAll=tkinter.Toplevel()
+    frmShowAll=tkinter.Toplevel()
     myCursor = mycon.cursor()
     strQuery = "select * from cus"
     rowaffected=myCursor.execute(strQuery)
@@ -174,9 +166,5 @@ btn_showall.grid(row=7,column=4)
 btn_exit = tkinter.Button(frame3,text="EXIT",bg="dark green",relief="groove",font=("Georgia",15),bd=10,command=btn_exit_click)
 btn_exit.grid(row=8,column=2)
 
-###############################################image################################################################
-
-
 root.mainloop()
-#search remove from screen
-#showall problem
+
