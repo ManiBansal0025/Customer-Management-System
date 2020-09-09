@@ -21,6 +21,8 @@ Tkinter Widgets Used in Project
 ●	Label
 ●	Messagebox
 
+Database:
+
 
 Various functionalities of the customer management system are:
 Adding Customers
